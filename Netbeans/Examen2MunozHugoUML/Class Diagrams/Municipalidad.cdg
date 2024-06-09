@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Municipalidad">
+  <ClassDiagramComponents>
+    <Class name="Semaforo" package="" visibility="public" xPosition="11.0" yPosition="27.0">
+      <Fields>
+        <Field name="nro" type="int" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="ubicacion" type="String" visibility="private"/>
+        <Field name="tipoCorriente" type="String" visibility="private"/>
+        <Field name="luces" type="Luz[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="nro"/>
+          <Argument type="String" name="estado"/>
+          <Argument type="String" name="ubicacion"/>
+          <Argument type="String" name="tipoCorriente"/>
+          <Argument type="Luz[]" name="luces"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="registrarAveria" returnType="void" visibility="public"/>
+        <Method name="obtenerHistorialReparaciones" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Luz" package="" visibility="public" xPosition="822.0" yPosition="11.0">
+      <Fields>
+        <Field name="numSerie" type="int" visibility="private"/>
+        <Field name="empresaFabricada" type="String" visibility="private"/>
+        <Field name="tipo" type="String" visibility="private"/>
+        <Field name="color" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="numSerie"/>
+          <Argument type="String" name="empresaFabricada"/>
+          <Argument type="String" name="tipo"/>
+          <Argument type="String" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="encender" returnType="void" visibility="public"/>
+        <Method name="apagar" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Denunciante" package="" visibility="public" xPosition="11.0" yPosition="344.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="email"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="registrarDenunciante" returnType="void" visibility="public"/>
+        <Method name="notificarReparacion" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Denuncia" package="" visibility="public" xPosition="427.0" yPosition="277.0">
+      <Fields>
+        <Field name="codD" type="int" visibility="private"/>
+        <Field name="fechaDenuncia" type="Date" visibility="private"/>
+        <Field name="calleX" type="String" visibility="private"/>
+        <Field name="calleY" type="String" visibility="private"/>
+        <Field name="problema" type="String" visibility="private"/>
+        <Field name="prioridadReparacion" type="int" visibility="private"/>
+        <Field name="denunciante" type="Denunciante" visibility="private"/>
+        <Field name="semaforo" type="Semaforo" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="codD"/>
+          <Argument type="Date" name="fechaDenuncia"/>
+          <Argument type="String" name="calleX"/>
+          <Argument type="String" name="calleY"/>
+          <Argument type="String" name="problema"/>
+          <Argument type="int" name="prioridadReparacion"/>
+          <Argument type="Denunciante" name="denunciante"/>
+          <Argument type="Semaforo" name="semaforo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="registarDenuncia" returnType="void" visibility="public"/>
+        <Method name="informarEstado" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="OrdenDeComposicion" package="" visibility="public" xPosition="1023.0" yPosition="613.0">
+      <Fields>
+        <Field name="nroOrden" type="int" visibility="private"/>
+        <Field name="fechaProgramada" type="Date" visibility="private"/>
+        <Field name="fechaEfectiva" type="Date" visibility="private"/>
+        <Field name="detalle" type="String" visibility="private"/>
+        <Field name="denuncia" type="Denuncia" visibility="private"/>
+        <Field name="equipoControl" type="EquipoControl" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="nroOrden"/>
+          <Argument type="Date" name="fechaProgramada"/>
+          <Argument type="Date" name="fechaEfectiva"/>
+          <Argument type="String" name="detalle"/>
+          <Argument type="Denuncia" name="denuncia"/>
+          <Argument type="EquipoControl" name="equipoControl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="programarReparacion" returnType="void" visibility="public"/>
+        <Method name="registarFechaEfectiva" returnType="void" visibility="public"/>
+        <Method name="imprimirOrden" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="EquipoControl" package="" visibility="public" xPosition="427.0" yPosition="641.0">
+      <Fields>
+        <Field name="codigo" type="int" visibility="private"/>
+        <Field name="listaMiembros" type="List&lt;Miembro&gt;" visibility="private"/>
+        <Field name="especialidad" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="codigo"/>
+          <Argument type="List&lt;Miembro&gt;" name="listaMiembros"/>
+          <Argument type="String" name="especialidad"/>
+          <Argument type="String" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="asignarEquipo" returnType="void" visibility="public"/>
+        <Method name="liberarEquipo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Miembro" package="" visibility="public" xPosition="11.0" yPosition="613.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="puesto" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="puesto"/>
+          <Argument type="String" name="estado"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="marcarOcupado" returnType="void" visibility="public"/>
+        <Method name="marcarLibre" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="hace" source="Denuncia" target="Denunciante" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="compuesta" source="Semaforo" target="Luz" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="asigna" source="OrdenDeComposicion" target="EquipoControl" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="contiene" source="EquipoControl" target="Miembro" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="denuncia" source="Denuncia" target="Semaforo" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="genera" source="Denuncia" target="OrdenDeComposicion" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="VariasDenuncias" source="Denunciante" target="Denuncia" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
